@@ -1,10 +1,19 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'enceladus'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+
+begin
+  Enceladus.connect(ENV["TMDB_KEY"])
+rescue
+  puts "--Could not connect to TMDB via Enceladus, check secret key"
+else
+  puts "--TMDB connection via Enceladus successful--"
+end
 
 module Celebritynamegame
   class Application < Rails::Application
