@@ -1,0 +1,33 @@
+<section class="playingfield">
+  <!-- 
+      Give each draggable and droppable regions the 'data-dropzone-id' attribute and then if those match when calculating the score, set 'data-actor-matched' to true and then count how many are true; that is the score for the round
+  -->
+  <div id="actors">
+    <ul>
+      <% 5.times.each do |member| %>
+      <li>
+        <div name="actor<%= member %>">
+          <img src="<%= @movie.castphotos[member] %>" alt="Actor portrait">
+          <div data-dropzone-id="actor<%= member %>" class="droppable"
+            data-actor-matched="false">
+            Drop a name here!
+          </div>
+        </li>
+      <% end %>
+
+    </ul>
+  </div><!-- actors -->
+
+  <div name="actornames">
+    <p>Drag the name of the actor to the matching portrait.</p>
+    <ul>
+      <% 10.times.each do |member| %>
+      <li>
+        <div data-dropzone-id="actor<%= member %>" class="draggable"><span>
+          <%= @movie.castnames[member] %></span></div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+
+</section>
