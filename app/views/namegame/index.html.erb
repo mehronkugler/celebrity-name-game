@@ -1,8 +1,92 @@
 
-
+<section class="header">
 <h2>Celebrity Name Game</h2>
-<h3>In progress.</h3>
+<h3>Search movies and see if you know who's who.</h3>
 <p>Current score: <%= @score %>, you are on round # <%= @rounds %></p>
-<p></p><p></p>
+</section>
+
+
+
+<section class="searchbox">
+  Type movie name here: <input type="text" name="searchbox"></input>
+  <button type="submit" name="moviesubmit">Search</button>
+  <div id="searchstatus">[ Status of Search ]</div>
+</section>
+
+<section class="movieposter">
+  <img src="#" alt="Current movie poster loads here">
+</section>
+
+
+
+<section class="playingfield">
+  <!-- 
+      Give each draggable and droppable regions the 'data-dropzone-id' attribute and then if those match when calculating the score, set 'data-actor-matched' to true and then count how many are true; that is the score for the round
+  -->
+  <div id="actors">
+    <ul>
+      <li>
+        <div name="actor1">
+          <img src="#" alt="Actor 1 portrait">
+          <div data-dropzone-id="actor1" class="droppable" data-actor-matched="false">Actor 1 Dropzone</div>
+        </div>
+      </li>
+      <li>
+        <div name="actor2">
+          <img src="#" alt="Actor 2 portrait">
+          <div data-dropzone-id="actor2" class="droppable" data-actor-matched="false">Actor 2 Dropzone</div>
+        </div>
+      </li>
+      <li>
+        <div name="actor3">
+          <img src="#" alt="Actor 3 portrait">
+          <div data-dropzone-id="actor3" class="droppable" data-actor-matched="false">Actor 3 Dropzone</div>
+        </div>
+      </li>
+      <li>
+        <div name="actor4">
+          <img src="#" alt="Actor 4 portrait">
+          <div data-dropzone-id="actor4" class="droppable" data-actor-matched="false">Actor 4 Dropzone</div>
+        </div>
+      </li>
+      <li>
+        <div name="actor5">
+          <img src="#" alt="Actor 5 portrait">
+          <div data-dropzone-id="actor5" class="droppable" data-actor-matched="false">Actor 5 Dropzone</div>
+        </div>
+      </li>
+    </ul>
+  </div><!-- actors -->
+
+  <div name="actornames">
+    <p>Drag the name of the actor to the matching portrait.</p>
+    <ul>
+      <li>
+        <div data-dropzone-id="actor1" class="draggable"><span>Actor 1 Name</span></div>
+      </li>
+      <li>
+        <div data-dropzone-id="actor2" class="draggable"><span>Actor 2 Name</span></div>
+      </li>
+      <li>
+        <div data-dropzone-id="actor3" class="draggable"><span>Actor 3 Name</span></div>
+      </li>
+      <li>
+        <div data-dropzone-id="actor4" class="draggable"><span>Actor 4 Name</span></div>
+      </li>
+      <li>
+        <div data-dropzone-id="actor5" class="draggable"><span>Actor 5 Name</span></div>
+      </li>
+    </ul>
+  </div>
+
+</section>
+
+<section class="scoring">
+  <div class="result">
+    <p>Your score for this round is **X** and your total is now **Y**</p>
+    <button type="submit" class="result">Check my score</button>
+  </div>
+</section>
+
 
 <p>"This product uses the TMDb API but is not endorsed or certified by TMDb."</p>
