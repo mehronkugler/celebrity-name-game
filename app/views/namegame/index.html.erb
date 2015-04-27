@@ -5,7 +5,8 @@
 <p>Current score: <%= @score %>, you are on round # <%= @rounds %></p>
 </section>
 
-
+ <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 <section class="searchbox">
   Type movie name here: <input type="text" name="searchbox"></input>
@@ -17,7 +18,25 @@
   <img src="#" alt="Current movie poster loads here">
 </section>
 
-
+ <style>
+.draggable { width: 100px; height: 100px; padding: 0.5em; margin: 10px 10px 10px 0; border: 1px solid black;}
+.droppable { width: 150px; height: 150px; padding: 0.5em; margin: 10px; border: 1px solid black; }
+</style>
+<script>
+$(function() { 
+$( ".draggable" ).draggable({ 
+  containment: ".playingfield", 
+  scroll: false,
+  snap: ".droppable" });
+$( ".droppable" ).droppable({
+drop: function( event, ui ) {
+  $( this )
+    .find( "p" )
+    .html( "Dropped!" );
+}
+});
+});
+</script>
 
 <section class="playingfield">
   <!-- 
