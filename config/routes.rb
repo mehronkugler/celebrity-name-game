@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
   root 'namegame#index'
 
+  resource :movie do
+    post :index
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

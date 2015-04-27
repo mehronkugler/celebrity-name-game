@@ -7,6 +7,18 @@ class NamegameController < ApplicationController
     # pass values of cookies to the index page
     @score = cookies[:celebng_score]
     @rounds = cookies[:celebng_rounds]
+    begin
+      (Enceladus::Movie.find_by_title(params[:searchtext]).total_results > 0)
+    rescue Enceladus::Exception::Api => e
+      @movie = Movie.new("Interstellar")
+    else
+      @movie = Movie.new(params[:searchtext])
+    end
+
+  end
+
+  def search
+    @movie = Movie.new(params[:searchtext])
   end
 
 end
