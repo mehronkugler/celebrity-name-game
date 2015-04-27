@@ -1,0 +1,15 @@
+.playingfield ul li {
+  display: inline-block;
+}
+
+.draggable, .droppable { 
+  width: 100px; 
+  height: 100px; 
+  padding: 0.5em; 
+  margin: 10px 10px 10px 0; 
+  border: 1px solid black;
+}
+
+.droppable-hover { 
+  background-color: yellow; 
+}
