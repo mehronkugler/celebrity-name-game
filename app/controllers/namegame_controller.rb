@@ -12,11 +12,12 @@ class NamegameController < ApplicationController
       # Test that the searchtext does in fact return a valid movie by testing the result of an arbitrary value 
       (Enceladus::Movie.find_by_title(params[:searchtext]).total_results > 0)
     rescue Enceladus::Exception::Api => e
+      # Look up the movie 'interstellar' by default
       @movie = Movie.new("Interstellar")
     else
       @movie = Movie.new(params[:searchtext])
     end
-    
+
   end
 
   def search
