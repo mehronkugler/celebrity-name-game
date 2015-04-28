@@ -7,14 +7,6 @@ require 'enceladus'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-begin
-  Enceladus.connect(ENV["TMDB_KEY"])
-rescue
-  puts "--Could not connect to TMDB via Enceladus, check secret key"
-else
-  puts "--TMDB connection via Enceladus successful--"
-end
-
 module Celebritynamegame
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -32,4 +24,14 @@ module Celebritynamegame
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
   end
+
+# The Movie DB Config
+begin
+  Enceladus.connect(Rails.application.secrets.tmdb_key)
+rescue
+  puts "--Could not connect to TMDB via Enceladus, check secret key"
+else
+  puts "--TMDB connection via Enceladus successful--"
+end
+
 end

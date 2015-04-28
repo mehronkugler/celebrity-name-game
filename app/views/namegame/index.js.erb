@@ -16,3 +16,15 @@ $(".movieposter").html('<%= escape_javascript(render 'movieposter').html_safe %>
 $(".scoring").html('<%= escape_javascript(render 'scoring').html_safe %>');
 $(".playingfield").html('<%= escape_javascript(render 'playingfield').html_safe %>');
 
+// Make AJAX results interactive
+$( ".draggable" ).draggable({ 
+  containment: ".playingfield", 
+  scroll: false,
+  snap: ".droppable",
+  snapMode: "inner" });
+$( ".droppable" ).droppable({
+  hoverClass: "droppable-hover",
+  accept: ".draggable"
+});
+var movieQueryBox = document.querySelectorAll("[name=searchbox]");
+var searchQuery = movieQueryBox.value;
