@@ -1,0 +1,30 @@
+<% begin %>
+  <% # Test that the searchtext does in fact return a valid movie by testing the result of an arbitrary value %>
+  <%  (Enceladus::Movie.find_by_title(params[:searchtext]).total_results > 0) %>
+<% rescue Enceladus::Exception::Api => e %>
+  <%  @movie = Movie.new("Interstellar") %>
+<% else %>
+  <%  @movie = Movie.new(params[:searchtext]) %>
+<% end %>
+
+// Success Loading...
+console.log("Looked for new movie: <%= @movie.title %>")
+$('.loader').removeClass('loading')
+
+// Replace content
+$(".movieposter").html('<%= escape_javascript(render 'movieposter').html_safe %>');
+$(".scoring").html('<%= escape_javascript(render 'scoring').html_safe %>');
+$(".playingfield").html('<%= escape_javascript(render 'playingfield').html_safe %>');
+
+// Make AJAX results interactive
+$( ".draggable" ).draggable({ 
+  containment: ".playingfield", 
+  scroll: false,
+  snap: ".droppable",
+  snapMode: "inner" });
+$( ".droppable" ).droppable({
+  hoverClass: "droppable-hover",
+  accept: ".draggable"
+});
+var movieQueryBox = document.querySelectorAll("[name=searchbox]");
+var searchQuery = movieQueryBox.value;

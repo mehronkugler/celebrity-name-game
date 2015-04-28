@@ -1,3 +1,14 @@
+.loader {
+  display: none;
+  height: 15px;
+  width: 15px;
+  background: url(http://i.imgur.com/ANufw4A.gif) center center no-repeat;
+  background-size: contain;
+}
+.loader.loading {
+  display: inline-block;
+}
+
 .playingfield ul li {
   display: inline-block;
 }
