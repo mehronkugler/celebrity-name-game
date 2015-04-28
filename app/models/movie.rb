@@ -1,6 +1,6 @@
 class Movie < ActiveRecord::Base
 
-  attr_reader :title, :castnames, :castphotos, :poster, :year  #string
+  attr_reader :title, :castnames, :castphotos, :poster, :year, :budget, :producers  #string
 
   def initialize(query)
     movie = Enceladus::Movie.find_by_title(query).first
@@ -10,6 +10,9 @@ class Movie < ActiveRecord::Base
     castarray = movie.cast[0..9] # ten cast members
     @castnames = actornames(castarray)
     @castphotos = actorphotos(castarray)
+    @budget = movie.budget
+    @producers = movie.production_companies
+
   end
 
   def self.is_valid_search(query)

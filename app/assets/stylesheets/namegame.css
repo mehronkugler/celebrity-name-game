@@ -2,6 +2,16 @@
   display: inline-block;
 }
 
+section.playingfield, section.movieposter {
+  display:inline-block;
+  vertical-align: top;
+  margin-top: 24px;
+}
+
+.header h2 {
+  text-transform: uppercase;
+}
+
 .draggable, .droppable { 
   width: 100px; 
   height: 100px; 

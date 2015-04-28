@@ -6,17 +6,13 @@
 </section>
 
 <section class="searchbox">
-  <%= form_tag '/', :method => :get %>
+  <%= form_tag '/', method: :get, remote: true %>
     <%= text_field_tag :searchtext, 'Interstellar' %>
-    <%= submit_tag 'Find movie' %>
-    <div><p>You last typed <%= params[:searchtext] %></p></div>
-  <div id="searchstatus"><p>[ Current movie title: <%= @movie.title %> ]</p></div>
-
+    <%= submit_tag 'Find movie' %> <span><em> You last typed "<%= params[:searchtext] %>"</em></span>
+    
 </section>
 
-<section class="movieposter">
-  <img src="<%= @movie.poster %>" alt="Current movie poster loads here">
-</section>
+<%= render 'movieposter' %>
 
 <script>
 
@@ -29,19 +25,23 @@ $( ".draggable" ).draggable({
 
 $( ".droppable" ).droppable({
   hoverClass: "droppable-hover",
-  accept: ".draggable",
-  greedy: true,
-  drop : function(event, ui) {
-    $(this).droppable( "option", "disabled", true );
-    },
-  out : function(event, ui) {
-    $(this).droppable( "option", "disabled", false );
-    },
-  revert: function (event, ui) {
-    $(this).droppable( "option", "disabled", true );
-    } 
+  accept: ".draggable"
 
   });
+
+  // drop : function(event, ui) {
+  //   $(this).droppable( "option", "disabled", true );
+  //   },
+  // out : function(event, ui) {
+  //   $(this).droppable( "option", "disabled", false );
+  //   },
+  // revert: function (event, ui) {
+  //   $(this).droppable( "option", "disabled", true );
+  //   } 
+
+ // $('.searchbox').bind('ajax:success', function(evt, data, status, xhr){
+ //    $('.playingfield').html(xhr.responseText);
+ //  });
 
 var movieQueryBox = document.querySelectorAll("[name=searchbox]");
 var searchQuery = movieQueryBox.value;

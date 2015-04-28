@@ -1,4 +1,5 @@
 class NamegameController < ApplicationController
+  respond_to :js, :html
 
   def index
     # Create new cookies if they don't exist already
@@ -8,13 +9,14 @@ class NamegameController < ApplicationController
     @score = cookies[:celebng_score]
     @rounds = cookies[:celebng_rounds]
     begin
+      # Test that the searchtext does in fact return a valid movie by testing the result of an arbitrary value 
       (Enceladus::Movie.find_by_title(params[:searchtext]).total_results > 0)
     rescue Enceladus::Exception::Api => e
       @movie = Movie.new("Interstellar")
     else
       @movie = Movie.new(params[:searchtext])
     end
-
+    
   end
 
   def search
