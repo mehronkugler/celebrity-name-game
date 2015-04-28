@@ -6,7 +6,7 @@
 </section>
 
 <section class="searchbox">
-  <%= form_tag '/', method: :get %>
+  <%= form_tag '/', method: :get, remote: true %>
     <%= text_field_tag :searchtext, 'Interstellar' %>
     <%= submit_tag 'Find movie' %> <span><em> You last typed "<%= params[:searchtext] %>"</em></span>
     

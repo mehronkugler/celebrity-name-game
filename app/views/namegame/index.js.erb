@@ -1,0 +1,14 @@
+
+    <% begin %>
+    <% # Test that the searchtext does in fact return a valid movie by testing the result of an arbitrary value %>
+    <%  (Enceladus::Movie.find_by_title(params[:searchtext]).total_results > 0) %>
+    <% rescue Enceladus::Exception::Api => e %>
+    <%  @movie = Movie.new("Interstellar") %>
+    <% else %>
+    <%  @movie = Movie.new(params[:searchtext]) %>
+    <% end %>
+    <%= puts "Looked for new movie," + @movie.title %>
+
+$(".movieposter").html(<%= escape_javascript(render 'movieposter').html_safe %>);
+$(".scoring").html(<%= escape_javascript(render 'scoring').html_safe %>);
+
