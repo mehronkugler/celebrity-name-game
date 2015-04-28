@@ -9,6 +9,7 @@
 
 // Success Loading...
 console.log("Looked for new movie: <%= @movie.title %>")
+$('.loader').removeClass('loading')
 
 // Replace content
 $(".movieposter").html('<%= escape_javascript(render 'movieposter').html_safe %>');

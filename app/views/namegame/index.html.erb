@@ -8,9 +8,15 @@
 <section class="searchbox">
   <%= form_tag '/', method: :get, remote: :true %>
     <%= text_field_tag :searchtext, 'Interstellar' %>
-    <%= submit_tag 'Find movie' %> <span><em> You last typed "<%= params[:searchtext] %>"</em></span>
-    
+    <%= submit_tag 'Find movie' %> <div class="loader"></div>
 </section>
+
+<!-- Add loading icon - should move this code to a js file -->
+<script type="text/javascript">
+     $( "form" ).submit(function( ) {
+      $('.loader').addClass('loading')
+    });
+</script>
 
 <%= render 'movieposter' %>
 
