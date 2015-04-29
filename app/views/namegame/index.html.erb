@@ -6,8 +6,9 @@
 </section>
 
 <section class="searchbox">
-  <%= form_tag '/', method: :get, remote: :true %>
+  <%= form_tag '/', method: :get, remote: :true, id: "searchbox" %>
     <%= text_field_tag :searchtext, 'Interstellar' %>
+    <%= hidden_field_tag 'totalscore', (params[:totalscore]) %>
     <%= submit_tag 'Find movie' %> <div class="loader"></div>
 </section>
 
@@ -22,9 +23,9 @@
 
 <script>
 
-$(function() { 
-$( ".draggable" ).draggable({ 
-  containment: ".playingfield", 
+$(function() {
+$( ".draggable" ).draggable({
+  containment: ".playingfield",
   scroll: false,
   snap: ".droppable",
   snapMode: "inner" });
@@ -43,15 +44,8 @@ $( ".droppable" ).droppable({
   //   },
   // revert: function (event, ui) {
   //   $(this).droppable( "option", "disabled", true );
-  //   } 
+  //   }
 
- // $('.searchbox').bind('ajax:success', function(evt, data, status, xhr){
- //    $('.playingfield').html(xhr.responseText);
- //  });
-
-var movieQueryBox = document.querySelectorAll("[name=searchbox]");
-var searchQuery = movieQueryBox.value;
-// document.getElementById("jssearchstatus").innerHTML = searchQuery;
 });
 
 </script>

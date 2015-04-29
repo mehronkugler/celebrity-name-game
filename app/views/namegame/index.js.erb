@@ -7,9 +7,13 @@
   <%  @movie = Movie.new(params[:searchtext]) %>
 <% end %>
 
+var movieQueryBox = document.querySelectorAll("[name=searchbox]");
+var searchQuery = ('<%= (params[:searchtext]) %>');
+var scoreThisRound = 0;
+
 // Success Loading...
-console.log("Looked for new movie: <%= @movie.title %>")
-$('.loader').removeClass('loading')
+console.log("Looked for new movie: <%= @movie.title %>");
+$('.loader').removeClass('loading');
 
 // Replace content
 $(".movieposter").html('<%= escape_javascript(render 'movieposter').html_safe %>');
@@ -24,6 +28,7 @@ $( ".draggable" ).draggable({
   snapMode: "inner" });
 
 // Testing droppables, see if we can get some properties of the draggable
+
 
 $( ".droppable" ).droppable({
             accept: ".draggable",
@@ -40,6 +45,3 @@ $( ".droppable" ).droppable({
                 }
             }
 });
-
-var movieQueryBox = document.querySelectorAll("[name=searchbox]");
-var searchQuery = movieQueryBox.value;
