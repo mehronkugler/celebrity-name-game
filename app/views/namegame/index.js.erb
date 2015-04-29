@@ -34,7 +34,9 @@ $( ".droppable" ).droppable({
                 var draggedDropzoneID = $(ui.draggable).attr('data-dropzone-id');
                 // alert("The dragged data-dropzone-id is " + draggedDropzoneID + " and my ID is  " + myDropzoneID);
                 if ((myDropzoneID) == (draggedDropzoneID)) {
-                  alert("The actor name and portrait are a match.");
+                  console.log("The actor name and portrait are a match.");
+                  $( "this" ).droppable( "option", "disabled", true );
+                  $(ui.draggable).draggable( "option", "disabled", true);
                 }
             }
 });
