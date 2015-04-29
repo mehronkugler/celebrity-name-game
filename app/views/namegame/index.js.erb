@@ -7,16 +7,25 @@
   <%  @movie = Movie.new(params[:searchtext]) %>
 <% end %>
 
+// Initialize some variables
 var movieQueryBox = document.querySelectorAll("[name=searchbox]");
 var searchQuery = ('<%= (params[:searchtext]) %>');
 var scoreThisRound = 0;
 var roundComplete = false;
+var draggablesRemaining = 5;
+
+// Award a point and update the score via span
+function awardPoint() {
+  scoreThisRound++;
+  $( ".currentscore").text(scoreThisRound);
+}
 
 // Success Loading...
+// Thanks to Andrew Borstein for the loader (https://github.com/andrewborstein)
 console.log("Looked for new movie: <%= @movie.title %>");
 $('.loader').removeClass('loading');
 
-// Replace content
+// Replace content in the various <section>s
 $(".movieposter").html('<%= escape_javascript(render 'movieposter').html_safe %>');
 $(".scoring").html('<%= escape_javascript(render 'scoring').html_safe %>');
 $(".playingfield").html('<%= escape_javascript(render 'playingfield').html_safe %>');
@@ -28,31 +37,45 @@ $( ".draggable" ).draggable({
   snap: ".droppable",
   snapMode: "inner" });
 
-// Testing droppables, see if we can get some properties of the draggable
-function awardPoint() {
-  scoreThisRound++;
-}
-
 $( ".droppable" ).droppable({
             accept: ".draggable",
             activeClass: "ui-state-hover",
             hoverClass: "ui-state-active",
             drop: function( event, ui ) {
+                // set variables for the matching logic
                 var myDropzoneID = $( this ).attr('data-dropzone-id');
                 var draggedDropzoneID = $(ui.draggable).attr('data-dropzone-id');
-                // alert("The dragged data-dropzone-id is " + draggedDropzoneID + " and my ID is  " + myDropzoneID);
+                var droppableMatched = $( this ).attr('data-actor-matched');
+
+                // Award a point and refresh the point display if a match is found
                 if ((myDropzoneID) == (draggedDropzoneID)) {
                   awardPoint();
                   console.log("Actor name and portrait are a match, point awarded.");
                   console.log("Points are now " +scoreThisRound);
-                  
                 }
-                  console.log("The draggable " +myDropzoneID+ " is disabled.");
-                  $( "this" ).droppable( "option", "disabled", true );
-                  $(ui.draggable).draggable( "option", "disabled", true);
+                // Disable the draggable regardless of a proper match or not
+                // but leave it alone if something was dropped at the target already
+
+                  if ((droppableMatched) == 'false') {
+                    $( this ).droppable( "option", "disabled", true );
+                    console.log("The draggable " +myDropzoneID+ " is disabled.");
+
+                    $(ui.draggable).draggable( "option", "disabled", true);
+                    console.log("The droppable " + draggedDropzoneID + " is disabled.");
+
+                    // set a flag to determine that this droppable has something on it
+                    $( this ).attr('data-actor-matched', 'true');
+                  }
+                  else {
+                    console.log("A draggable was dropped onto " +myDropzoneID+ " but the droppable is already disabled.");
+                  }
+
+                  
                 
             }
 });
+
+// Disable the default "submit" action on the "Check my score" button.
 
 $( "#submitbtn" ).click(function( event ) {
   event.preventDefault();
