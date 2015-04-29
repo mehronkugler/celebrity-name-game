@@ -4,7 +4,7 @@
   -->
   <div id="actors">
     <ul>
-      <% 5.times.each do |member| %>
+      <% [0,1,2,3,4].shuffle.each do |member| %>
       <li>
         <div name="actor<%= member %>">
           <img src="<%= @movie.castphotos[member] %>" alt="Actor portrait">
@@ -21,7 +21,7 @@
   <div name="actornames">
     <p>Drag the name of the actor to the matching portrait.</p>
     <ul>
-      <% 10.times.each do |member| %>
+      <% [0,1,2,3,4].shuffle.each do |member| %>
       <li>
         <div data-dropzone-id="actor<%= member %>" class="draggable"><span>
           <%= @movie.castnames[member] %></span></div>

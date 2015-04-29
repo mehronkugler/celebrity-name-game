@@ -34,10 +34,18 @@ $( ".droppable" ).droppable({
                 var draggedDropzoneID = $(ui.draggable).attr('data-dropzone-id');
                 // alert("The dragged data-dropzone-id is " + draggedDropzoneID + " and my ID is  " + myDropzoneID);
                 if ((myDropzoneID) == (draggedDropzoneID)) {
+                  console.log("Match found between " + myDropzoneID + " and " + draggedDropzoneID));
                   alert("The actor name and portrait are a match.");
+                  disableui($(this));
+                  disableui($(ui.draggable));
                 }
             }
 });
+
+function disableui(element) {
+  element.droppable( "option", "disabled", true);
+  console.log("Disabled " + element);
+};
 
 var movieQueryBox = document.querySelectorAll("[name=searchbox]");
 var searchQuery = movieQueryBox.value;
