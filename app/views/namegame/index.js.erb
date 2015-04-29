@@ -22,9 +22,22 @@ $( ".draggable" ).draggable({
   scroll: false,
   snap: ".droppable",
   snapMode: "inner" });
+
+// Testing droppables, see if we can get some properties of the draggable
+
 $( ".droppable" ).droppable({
-  hoverClass: "droppable-hover",
-  accept: ".draggable"
+            accept: ".draggable",
+            activeClass: "ui-state-hover",
+            hoverClass: "ui-state-active",
+            drop: function( event, ui ) {
+                var myDropzoneID = $( this ).attr('data-dropzone-id');
+                var draggedDropzoneID = $(ui.draggable).attr('data-dropzone-id');
+                // alert("The dragged data-dropzone-id is " + draggedDropzoneID + " and my ID is  " + myDropzoneID);
+                if ((myDropzoneID) == (draggedDropzoneID)) {
+                  alert("The actor name and portrait are a match.");
+                }
+            }
 });
+
 var movieQueryBox = document.querySelectorAll("[name=searchbox]");
 var searchQuery = movieQueryBox.value;
