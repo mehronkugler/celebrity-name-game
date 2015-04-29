@@ -1,3 +1,4 @@
+
 /* Fonts */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
@@ -11,6 +12,7 @@
 }
 
 .loader.loading {
+  position: absolute;
   display: inline-block;
 }
 
@@ -21,10 +23,27 @@ body {
   font-family: "Open Sans";
 }
 
+.center {
+  text-align: center;
+}
+
+/* Rails behaves strangely when accepting Materialize classes */
+
+input[type="submit"] {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
 
 /* HEADER */
 
-.header h2 {
+.header {
+  max-width: 450px;
+  margin: 0 auto;
+}
+/*.header h2 {
   text-transform: uppercase;
   text-shadow: 0px 1px 1px #4D4D4D;
   color: #222;
@@ -32,13 +51,25 @@ body {
   line-height: 1em;
   margin-bottom: 0;
 
+}*/
+/* search box */
+
+.searchbox {
+  max-width: 210px;
+  margin: 0 auto;
 }
 
 /* PLAYING FIELD */
 
+.midregion {
+  max-width: 1000px;
+  margin: 0 auto;
+}
 
 .playingfield ul li {
   display: inline-block;
+  margin-left: 6px;
+  margin-right: 6px;
 }
 
 section.playingfield, section.movieposter {
@@ -47,16 +78,11 @@ section.playingfield, section.movieposter {
   margin-top: 24px;
 }
 
-
-
 .draggable, .droppable { 
-  width: 100px; 
-  height: 50px; 
-  padding: 0.5em; 
-  margin: 10px 10px 10px 0; 
-  border: 1px solid black;
+  width: 128px; 
+  height: 100px; 
+  padding: 0.5em;   
   background-color: white;
-    border: 1px solid rgba(100, 100, 75, 0.8);
   border-radius: 4px;
 
    -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
@@ -69,7 +95,7 @@ section.playingfield, section.movieposter {
 
 .draggable {
   box-shadow: 1px 1px 4px rgba(125, 125, 255, 0.5);
-  height: auto;
+  border: 1px solid rgba(100, 100, 75, 0.8);
 }
 .ui-draggable {
   z-index: 20;
@@ -77,7 +103,6 @@ section.playingfield, section.movieposter {
 .ui-draggable-disabled {
   z-index: 10;
 }
-
 
 .draggable span {
   display: inline-block;
@@ -91,7 +116,7 @@ section.playingfield, section.movieposter {
 }
 
 .playingfield {
-  width: 960px;
+  
 }
 
 #actors ul li {
@@ -126,3 +151,11 @@ section.playingfield, section.movieposter {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+
+.actornames > p {
+  text-align: center;
+}
+
+/* SCORING */
+
+

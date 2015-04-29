@@ -1,15 +1,17 @@
 
 <section class="header">
-<h2>Celebrity Name Game</h2>
-<h3>Search movies and see if you know who's who.</h3>
+<h3>Celebrity Name Game</h3>
+<h4>Search movies and see if you know who's who.</h4>
 <p>Current score: <%= @score %>, you are on round # <%= @rounds %></p>
 </section>
 
 <section class="searchbox">
-  <%= form_tag '/', method: :get, remote: :true, id: "searchbox" %>
+  <%= form_tag '/', method: :get, 
+  remote: :true, 
+  id: "searchbox" %>
     <%= text_field_tag :searchtext, 'Interstellar' %>
     <%= hidden_field_tag 'totalscore', (params[:totalscore]) %>
-    <%= submit_tag 'Find movie' %> <div class="loader"></div>
+    <%= submit_tag 'Find movie', class: 'waves-effect waves-light btn' %> <div class="loader"></div>
 </section>
 
 <!-- Add loading icon - should move this code to a js file -->
@@ -18,6 +20,8 @@
       $('.loader').addClass('loading')
     });
 </script>
+
+<div class="midregion">
 
 <%= render 'movieposter' %>
 
@@ -53,6 +57,7 @@ $( ".droppable" ).droppable({
 <%= render "playingfield" %>
 
 <%= render "scoring" %>
+</div>
 
 
-<p>"This product uses the TMDb API but is not endorsed or certified by TMDb."</p>
+<p class="center">"This product uses the TMDb API but is not endorsed or certified by TMDb."</p>
