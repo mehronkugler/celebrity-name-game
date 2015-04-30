@@ -38,6 +38,10 @@ input[type="submit"] {
 
 /* HEADER */
 
+.left > li:nth-child(1) {
+  margin-left: 24px;
+}
+
 .header {
   max-width: 450px;
   margin: 0 auto;
@@ -66,8 +70,9 @@ nav ul li {
 /* PLAYING FIELD */
 
 .midregion {
-  width: 1080px;
+  width: 1180px;
   margin: 0 auto;
+
 }
 
 .playingfield ul li {
@@ -187,10 +192,32 @@ section#scoring, section#results {
   text-align: center;
 }
 
+section#results {
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 12px;
+}
 .hidden {
   display: none;
 }
 
 .visible {
   display: block;
+  visibility: visible;
+     -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 3s; /* Firefox < 16 */
+        -ms-animation: fadein 3s; /* Internet Explorer */
+         -o-animation: fadein 3s; /* Opera < 12.1 */
+            animation: fadein 3s;
 }
+
+.hideall {
+  visibility: hidden;
+}
+section.playingfield:nth-child(1) > div:nth-child(2) > ul:nth-child(2) {
+  height: 0px;
+-webkit-transition:width 300ms ease-in-out, height 300ms ease-in-out;
+    -moz-transition:width 300ms ease-in-out, height 300ms ease-in-out;
+    -o-transition:width 300ms ease-in-out, height 300ms ease-in-out;
+    transition:width 300ms ease-in-out, height 300ms ease-in-out;
+  }

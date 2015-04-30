@@ -3,7 +3,7 @@
 <a name="top"></a>
 <section class="header">  
 
-<h6>Search movies and see if you know who's who.</h6>
+<h6></h6>
 <p></p>
 
 </section>
@@ -15,7 +15,7 @@
     <%= text_field_tag :searchtext, 'Interstellar' %>
     <%= hidden_field_tag 'totalscore' %>
     <%= hidden_field_tag 'totalrounds' %>
-    <%= submit_tag 'Find movie', class: 'waves-effect waves-light btn' %> <div class="loader"></div>
+    <%= submit_tag 'Find movie', class: 'waves-effect waves-light btn', id: 'searchbox_submit' %> <div class="loader"></div>
 </section>
 
 <!-- Add loading icon - should move this code to a js file -->
@@ -25,6 +25,7 @@
     });
 </script>
 
+<div class="hideall"> <!-- use this to keep everything hidden until the user puts in a search request -->
 <div class="midregion">
 
 <%= render 'movieposter' %>
@@ -44,6 +45,14 @@ $( ".droppable" ).droppable({
 
   });
 
+$( '#searchbox').submit(function( event ) {
+  console.log("Make Hideall visible");
+  setTimeout(function(){ // Delay for Chrome
+        $('.hideall').attr('class','visible');
+    }, 1000);
+  
+});
+
   // drop : function(event, ui) {
   //   $(this).droppable( "option", "disabled", true );
   //   },
@@ -56,12 +65,15 @@ $( ".droppable" ).droppable({
 
 });
 
+
+
 </script>
 
 <%= render "playingfield" %>
 
 <%= render "scoring" %>
 <%= render 'results' %>
+</div>
 </div>
 
 
