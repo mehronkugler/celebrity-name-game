@@ -5,14 +5,19 @@
   <div id="actors">
     <ul>
       <% [0,1,2,3,4].shuffle.each do |member| %>
-      <li class="card">
-        <div name="actor<%= member %>">
-          <img src="<%= @movie.castphotos[member] %>" alt="Actor portrait">
-          <div data-dropzone-id="actor<%= member %>" class="droppable"
-            data-actor-matched="false">
-            Drop a name here!
+      <li>
+        <div name="actor<%= member %>" class="card">
+          <div class="card-image">
+            <img src="<%= @movie.castphotos[member] %>" alt="Actor portrait" class="actorportrait">
           </div>
-        </li>
+          <div class="card-content">
+            <div data-dropzone-id="actor<%= member %>" class="droppable"
+            data-actor-matched="false">
+              Drop a name here!
+            </div>
+          </div>
+        </div>
+      </li>
       <% end %>
 
     </ul>

@@ -1,8 +1,13 @@
 <section class="movieposter">
-  <img src="<%= @movie.poster %>" alt="Current movie poster loads here">
-  <div id="movieinfo">
-    <p><%= @movie.title %></p>
-    <p><%= @movie.year %></p>
-    <p><%= @movie.producers %></p>
-    <p>Budget: <%= @movie.budget %></p></div>
+  <div class="card">
+    <div class="card-image">
+      <img src="<%= @movie.poster %>" alt="Current movie poster loads here">
+    </div>
+    <div class="card-content">
+      <p><%= @movie.title %></p>
+      <p><%= @movie.year %></p>
+      <p><%= @movie.producers %></p>
+      <p>Budget: <%= @movie.budget %></p>
+    </div>
+  </div>
 </section>
