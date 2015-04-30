@@ -2,7 +2,7 @@
 /* Fonts */
 
 /*@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);*/
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,900);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,400italic,900);
 
 .loader {
   display: none;
@@ -87,7 +87,7 @@ img.actorportrait {
 
 .card .card-content {
     padding: 10px;
-    
+
 }
 section.playingfield, section.movieposter {
   display:inline-block;
@@ -98,10 +98,10 @@ section.playingfield, section.movieposter {
 section.movieposter {
   margin-right: 32px;
 }
-.draggable, .droppable { 
-  width: 150px; 
-  height: 100px; 
-    
+.draggable, .droppable {
+  width: 150px;
+  height: 100px;
+
   background-color: white;
 /*  border-radius: 4px;*/
    -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
@@ -137,12 +137,12 @@ section.movieposter {
   text-align: center;
 }
 
-.droppable-hover { 
-  background-color: yellow; 
+.droppable-hover {
+  background-color: yellow;
 }
 
 .playingfield {
-  
+
 }
 
 #actors ul li {
