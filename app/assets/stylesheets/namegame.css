@@ -183,6 +183,14 @@ section.movieposter {
 
 /* SCORING */
 
-section.scoring .result {
+section#scoring, section#results {
   text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
 }

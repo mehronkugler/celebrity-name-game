@@ -22,8 +22,8 @@
   remote: :true, 
   id: "searchbox" %>
     <%= text_field_tag :searchtext, 'Interstellar' %>
-    <%= hidden_field_tag 'totalscore', (params[:totalscore]) %>
-    <%= hidden_field_tag 'totalrounds', (params[:totalrounds]) %>
+    <%= hidden_field_tag 'totalscore' %>
+    <%= hidden_field_tag 'totalrounds' %>
     <%= submit_tag 'Find movie', class: 'waves-effect waves-light btn' %> <div class="loader"></div>
 </section>
 

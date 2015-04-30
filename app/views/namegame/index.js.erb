@@ -10,6 +10,8 @@
 // Initialize some variables
 var movieQueryBox = document.querySelectorAll("[name=searchbox]");
 var searchQuery = ('<%= (params[:searchtext]) %>');
+var totalScore = ('<%= @score %>');
+var totalRounds = ('<%= @rounds %>');
 var scoreThisRound = 0;
 var roundComplete = false;
 var draggablesRemaining = 5;
@@ -17,19 +19,33 @@ var draggablesRemaining = 5;
 // Award a point and update the score via span
 function awardPoint() {
   scoreThisRound++;
-  
 }
+
 // Call to the currentscore <span> and give it a value.
 function updateRoundScore() {
   $( ".currentscore").text(scoreThisRound);
 }
 
 function hideDraggableUL() {
- $( 'section.playingfield:nth-child(1) > div:nth-child(2) > ul:nth-child(2)').attr('style', 'display: none;');
+ $( 'section.playingfield:nth-child(1) > div:nth-child(2) > ul:nth-child(2)').attr('style', 'height: 0px;');
+}
+
+function showDraggableUL() {
+  $( 'section.playingfield:nth-child(1) > div:nth-child(2) > ul:nth-child(2)').attr('style', 'height: auto;');
 }
 
 function showFinalScore() {
-  $( "#results").attr('style', 'display: visible;');
+  updateRoundScore();
+  $( "#results").attr('class', 'visible');
+  $( '#totalscore').attr('value', (totalScore + scoreThisRound));
+  console.log("Updated totalscore plus scoreThisRound is " + (totalScore + scoreThisRound));
+  ($ '#totalrounds' ).attr('value', (totalRounds++));
+}
+
+// hide the results div and show the UL for the cards
+function resetField() {
+  $( '#results' ).attr('class', 'hidden');
+  showDraggableUL();
 }
 
 // Success Loading...
@@ -94,11 +110,15 @@ $( ".droppable" ).droppable({
 
 // Disable the default "submit" action on the "Check my score" button.
 
-$( "#submitbtn" ).click(function( event ) {
+$( "#scorebtn" ).click(function( event ) {
   event.preventDefault();
+  showFinalScore();
+});
+
+$( '#playagain' ).click(function( event) {
+  event.preventDefault();
+  resetField();
 });
 
 
-// $( "input[type='submit']").attr('class', 'waves-effect waves-light btn');
 
-// dress form buttons using Material CSS
