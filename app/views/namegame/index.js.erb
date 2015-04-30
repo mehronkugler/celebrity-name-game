@@ -17,7 +17,19 @@ var draggablesRemaining = 5;
 // Award a point and update the score via span
 function awardPoint() {
   scoreThisRound++;
+  
+}
+// Call to the currentscore <span> and give it a value.
+function updateRoundScore() {
   $( ".currentscore").text(scoreThisRound);
+}
+
+function hideDraggableUL() {
+ $( 'section.playingfield:nth-child(1) > div:nth-child(2) > ul:nth-child(2)').attr('style', 'display: none;');
+}
+
+function showFinalScore() {
+  $( "#results").attr('style', 'display: visible;');
 }
 
 // Success Loading...
@@ -38,7 +50,7 @@ $( ".draggable" ).draggable({
   snapMode: "inner" });
 
 $( ".droppable" ).droppable({
-            accept: ".draggable",
+            accept: ".draggable.card.ui-draggable",
             activeClass: "ui-state-hover",
             hoverClass: "ui-state-active",
             drop: function( event, ui ) {
@@ -56,19 +68,27 @@ $( ".droppable" ).droppable({
                 // Disable the draggable regardless of a proper match or not
                 // but leave it alone if something was dropped at the target already
 
-                  if ((droppableMatched) == 'false') {
-                    $( this ).droppable( "option", "disabled", true );
-                    console.log("The draggable " +myDropzoneID+ " is disabled.");
+                if ((droppableMatched) == 'false') {
+                  $( this ).droppable( "option", "disabled", true );
+                  console.log("The draggable " +myDropzoneID+ " is disabled.");
 
-                    $(ui.draggable).draggable( "option", "disabled", true);
-                    console.log("The droppable " + draggedDropzoneID + " is disabled.");
+                  $(ui.draggable).draggable( "option", "disabled", true);
+                  console.log("The droppable " + draggedDropzoneID + " is disabled.");
 
-                    // set a flag to determine that this droppable has something on it
-                    $( this ).attr('data-actor-matched', 'true');
-                  }
-                  else {
-                    console.log("A draggable was dropped onto " +myDropzoneID+ " but the droppable is already disabled.");
-                  }
+                  // set a flag to determine that this droppable has something on it
+                  $( this ).attr('data-actor-matched', 'true');
+
+                  // count down to 0 draggables remaining
+                  draggablesRemaining = draggablesRemaining - 1;
+                  console.log("Draggables remaining: " +draggablesRemaining);
+                }
+                else {
+                  console.log("A draggable was dropped onto " +myDropzoneID+ " but the droppable is already disabled.");
+                }
+                // when all the draggables have been moved, hide the whitespace where they were
+                if ((draggablesRemaining) == 0) {
+                  hideDraggableUL();
+                }
             }
 });
 
