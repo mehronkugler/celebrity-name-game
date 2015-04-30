@@ -10,42 +10,61 @@
 // Initialize some variables
 var movieQueryBox = document.querySelectorAll("[name=searchbox]");
 var searchQuery = ('<%= (params[:searchtext]) %>');
-var totalScore = ('<%= @score %>');
-var totalRounds = ('<%= @rounds %>');
+var totalScore = (<%= @score %>);
+var totalRounds = (<%= @rounds %>);
 var scoreThisRound = 0;
 var roundComplete = false;
 var draggablesRemaining = 5;
+
 
 // Award a point and update the score via span
 function awardPoint() {
   scoreThisRound++;
 }
 
-// Call to the currentscore <span> and give it a value.
-function updateRoundScore() {
-  $( ".currentscore").text(scoreThisRound);
+// Update all scoring variables, actual displayed text, and hidden values in form
+function updateScore() {
+  // update the variables
+  totalRounds++;
+  totalScore = (totalScore + scoreThisRound);
+  console.log("This round, player scored " + scoreThisRound + " and is now at " + totalScore);
+
+  // update the text inside the displayed scores
+  $('.currentscore').text(scoreThisRound);
+  $('.totalrounds').text(totalRounds);
+  $('.totalscore').text(totalScore);
+
+  // update the form values
+  $( '#totalrounds' ).attr('value', (totalRounds));
+  // console.log("Form value of #totalrounds is " + $('#totalrounds').attr('value') + " and it should be " + totalRounds);
+  $( '#totalscore').attr('value', (totalScore));
+  // console.log("Form value of #totalrounds is " + $('#totalrounds').attr('value') + " and it should be " + totalScore);
 }
 
+// shrink the extra whitespace left behind when all the draggables are deposited into dropzones
 function hideDraggableUL() {
  $( 'section.playingfield:nth-child(1) > div:nth-child(2) > ul:nth-child(2)').attr('style', 'height: 0px;');
 }
 
+// use this to reset the field, I don't think Ajax will reload the class also
 function showDraggableUL() {
   $( 'section.playingfield:nth-child(1) > div:nth-child(2) > ul:nth-child(2)').attr('style', 'height: auto;');
 }
 
+// update the score, the total rounds played, put the values into the hidden fields on the search form (for next submit) and also reset the elements on the page which were hidden or made visible to their default states
 function showFinalScore() {
-  updateRoundScore();
-  $( "#results").attr('class', 'visible');
-  $( '#totalscore').attr('value', (totalScore + scoreThisRound));
-  console.log("Updated totalscore plus scoreThisRound is " + (totalScore + scoreThisRound));
-  ($ '#totalrounds' ).attr('value', (totalRounds++));
+  // show the scoring section
+  $( "#results").attr('class', 'visible'); 
+  updateScore();
+  // add +one to the rounds
+  
 }
 
 // hide the results div and show the UL for the cards
 function resetField() {
   $( '#results' ).attr('class', 'hidden');
   showDraggableUL();
+  $('#scorebtn').prop("disabled",false);
 }
 
 // Success Loading...
@@ -111,14 +130,22 @@ $( ".droppable" ).droppable({
 // Disable the default "submit" action on the "Check my score" button.
 
 $( "#scorebtn" ).click(function( event ) {
-  event.preventDefault();
+  // need to unbind the click function because it keeps duplicating the attached event 
+  $(this).unbind("click");
   showFinalScore();
+  // gray out the button so user can't click multiple times and increment score
+  $( this ).prop("disabled",true);
+  event.preventDefault();
+  return false;
 });
 
 $( '#playagain' ).click(function( event) {
+  $("html, body").animate({ scrollTop: 0 }, "slow");
   event.preventDefault();
-  resetField();
+  return false;
 });
 
 
+// reset visual elements each time the page is loaded
+resetField();
 

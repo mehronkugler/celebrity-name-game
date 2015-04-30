@@ -7,8 +7,12 @@ class NamegameController < ApplicationController
     # cookies[:celebng_score] = (params[:totalscore])
     cookies[:celebng_rounds] = 1 if (!cookies[:celebng_rounds])
     # pass values of cookies to the index page
-    @score = cookies[:celebng_score]
-    @rounds = cookies[:celebng_rounds]
+    @score = (params[:totalscore]).to_i #+ (cookies[:celebng_score]).to_i
+    puts "NamegameController: current score is #{@score}"
+    @rounds = (params[:totalrounds]).to_i #+ (cookies[:celebng_rounds]).to_i
+    puts "NamegameController: current round is #{@rounds}"
+    # totalscore received from form
+    # totalrounds received from form
     begin
       # Test that the searchtext does in fact return a valid movie by testing the result of an arbitrary value
       (Enceladus::Movie.find_by_title(params[:searchtext]).total_results > 0)
