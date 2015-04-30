@@ -40,7 +40,7 @@ class Movie < ActiveRecord::Base
   def actorphotos(castarray)
     tempcast = Array.new
     castarray.each do |member|
-      tempcast << member.profile_urls.first # 185px wide photo
+      tempcast << member.profile_urls.second # 185px wide photo
     end
     return tempcast
   end
