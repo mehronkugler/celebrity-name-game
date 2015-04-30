@@ -1,8 +1,20 @@
+<header>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">Celebrity Name Game</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>Score this round: <span class="currentscore">0</span> | Total score: <%= @score %> | Round # <%= @rounds %></li>
+      </ul>
+    </div>
+  </nav>
+</header>
 
-<section class="header">
-<h3>Celebrity Name Game</h3>
-<h4>Search movies and see if you know who's who.</h4>
-<p>Current score: <%= @score %>, you are on round # <%= @rounds %></p>
+<a name="top"></a>
+<section class="header">  
+
+<h6>Search movies and see if you know who's who.</h6>
+<p></p>
+
 </section>
 
 <section class="searchbox">
@@ -11,6 +23,7 @@
   id: "searchbox" %>
     <%= text_field_tag :searchtext, 'Interstellar' %>
     <%= hidden_field_tag 'totalscore', (params[:totalscore]) %>
+    <%= hidden_field_tag 'totalrounds', (params[:totalrounds]) %>
     <%= submit_tag 'Find movie', class: 'waves-effect waves-light btn' %> <div class="loader"></div>
 </section>
 
@@ -57,7 +70,8 @@ $( ".droppable" ).droppable({
 <%= render "playingfield" %>
 
 <%= render "scoring" %>
+<%= render 'results' %>
 </div>
 
 
-<p class="center">"This product uses the TMDb API but is not endorsed or certified by TMDb."</p>
+<%= render "footer" %>
