@@ -27,7 +27,7 @@ module Celebritynamegame
 
 # The Movie DB Config
 begin
-  Enceladus.connect(Rails.application.secrets.tmdb_key)
+  Enceladus.connect(ENV["TMDB_KEY"])
 rescue
   puts "--Could not connect to TMDB via Enceladus, check secret key"
 else
